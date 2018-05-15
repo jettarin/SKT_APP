@@ -3,23 +3,44 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { Items } from '../../providers';
+import { HttpClient } from '@angular/common/http';
+
+import { RestProvider } from '../../providers/rest/rest';
+
 
 @IonicPage()
 @Component({
   selector: 'page-list-master',
   templateUrl: 'list-master.html'
 })
-export class ListMasterPage {
-  currentItems: Item[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+
+
+export class ListMasterPage {
+
+  currentItems: Item[];
+  keys: String[];
+  users: any;
+  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController,private http: HttpClient,public restProvider: RestProvider) {
+
+    this.getUsers();
+
+  }
+
+  getUsers() {
+    this.restProvider.getUsers()
+    .then(data => {
+      this.users = data;
+      console.log(this.users);
+    });
   }
 
   /**
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
+
+
   }
 
   /**
