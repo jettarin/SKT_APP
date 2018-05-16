@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
+import firebase from 'firebase/app';
+import { FirebaseProvider } from './../../providers/firebase/firebase';
 import { Item } from '../../models/item';
 import { Items } from '../../providers';
 import { HttpClient } from '@angular/common/http';
+
+
+import { FirebaseListObservable } from 'angularfire2/database';
+
 
 import { RestProvider } from '../../providers/rest/rest';
 
@@ -17,12 +23,21 @@ import { RestProvider } from '../../providers/rest/rest';
 
 
 export class ListMasterPage {
-
+  shoppingItems: FirebaseListObservable<any[]>;
+  newItem = '';
   currentItems: Item[];
   keys: String[];
   users: any;
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController,private http: HttpClient,public restProvider: RestProvider) {
-
+  constructor(public navCtrl: NavController, 
+    public items: Items, 
+    public modalCtrl: ModalController,
+    private http: HttpClient,
+    public restProvider: RestProvider,
+    public firebaseProvider: FirebaseProvider) {
+    
+    this.shoppingItems = this.firebaseProvider.getShoppingItems({limitToLast: 6});
+    console.log(this.shoppingItems);
+    
     this.getUsers();
 
   }
@@ -35,27 +50,21 @@ export class ListMasterPage {
     });
   }
 
+
+
   /**
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
 
-
+  
   }
 
   /**
    * Prompt the user to add a new item. This shows our ItemCreatePage in a
    * modal and then adds the new item to our data source if the user created one.
    */
-  addItem() {
-    let addModal = this.modalCtrl.create('ItemCreatePage');
-    addModal.onDidDismiss(item => {
-      if (item) {
-        this.items.add(item);
-      }
-    })
-    addModal.present();
-  }
+
 
   /**
    * Delete an item from the list of items.

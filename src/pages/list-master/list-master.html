@@ -15,21 +15,22 @@
 <ion-content>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let k of users">
+    <ion-item-sliding *ngFor="let k of shoppingItems | async">
       <button ion-item (click)="openItem(k)">
         <ion-avatar item-start>
           <img [src]="k.profilePic" />
         </ion-avatar>
         <h2>{{k.name}}</h2>
-        <p>{{k.email}}</p>
+        <p>{{k.url}}</p>
         <ion-note item-end *ngIf="k.note">{{k.note}}</ion-note>
       </button>
-      <pre>{{currentItems}}</pre>
+      
       <ion-item-options>
         <button ion-button color="danger" (click)="deleteItem(k)">
           {{ 'DELETE_BUTTON' | translate }}
         </button>
       </ion-item-options>
+      
     </ion-item-sliding>
   </ion-list>
 </ion-content>

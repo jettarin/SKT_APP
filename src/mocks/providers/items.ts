@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Item } from '../../models/item';
 
-import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class Items {
@@ -15,7 +15,7 @@ export class Items {
   };
 
 
-  constructor(private http: HttpClient) {
+  constructor() {
 
 
 

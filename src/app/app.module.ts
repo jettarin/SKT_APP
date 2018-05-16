@@ -14,6 +14,21 @@ import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { RestProvider } from '../providers/rest/rest';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { FirebaseProvider } from './../providers/firebase/firebase';
+
+
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyA-oe4k58nxICxTqpCAVAfv0w__wccPKAQ",
+    authDomain: "sktapp-9befb.firebaseapp.com",
+    databaseURL: "https://sktapp-9befb.firebaseio.com",
+    projectId: "sktapp-9befb",
+    storageBucket: "",
+    messagingSenderId: "865943943219"
+};
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: HttpClient) {
@@ -49,6 +64,8 @@ export function provideSettings(storage: Storage) {
         deps: [HttpClient]
       }
     }),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -66,7 +83,8 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    RestProvider
+    RestProvider,
+    FirebaseProvider
   ]
 })
 export class AppModule { }
