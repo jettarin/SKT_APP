@@ -1,6 +1,6 @@
 {
-  "name": "SKTH",
-  "app_id": "d8cbc53b",
+  "name": "SKTH_APP",
+  "app_id": "dcdbf078",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
