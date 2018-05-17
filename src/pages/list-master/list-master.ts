@@ -54,6 +54,7 @@ export class ListMasterPage {
    */
   ionViewDidLoad() {
 
+  console.log("test");
   
   }
 
