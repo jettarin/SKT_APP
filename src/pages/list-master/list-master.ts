@@ -3,7 +3,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { FirebaseProvider } from './../../providers/firebase/firebase';
 import { Item } from '../../models/item';
-import { Items } from '../../providers';
+
 
 
 import { FirebaseListObservable } from 'angularfire2/database';
@@ -21,31 +21,23 @@ import { RestProvider } from '../../providers/rest/rest';
 
 
 export class ListMasterPage {
-  shoppingItems: FirebaseListObservable<any[]>;
+  items: FirebaseListObservable<any[]>;
   newItem = '';
   currentItems: Item[];
   keys: String[];
   users: any;
   constructor(public navCtrl: NavController, 
-    public items: Items, 
+    
     public modalCtrl: ModalController,
     public restProvider: RestProvider,
     public firebaseProvider: FirebaseProvider) {
     
-    this.shoppingItems = this.firebaseProvider.getShoppingItems({limitToLast: 6});
-    console.log(this.shoppingItems);
-    
-    this.getUsers();
+    this.items = this.firebaseProvider.getItems({limitToLast: 6});
+    console.log(this.items);
+
 
   }
 
-  getUsers() {
-    this.restProvider.getUsers()
-    .then(data => {
-      this.users = data;
-      console.log(this.users);
-    });
-  }
 
 
 
@@ -67,7 +59,7 @@ export class ListMasterPage {
     
     addModal.onDidDismiss(item => {
       if (item) {
-        this.items.add(item);
+        //this.items.add(item);
         this.firebaseProvider.addItem(item)
       }
     })
@@ -78,7 +70,8 @@ export class ListMasterPage {
    * Delete an item from the list of items.
    */
   deleteItem(item) {
-    this.items.delete(item);
+    console.log(item.$key);
+    this.firebaseProvider.removeItem(item)
   }
 
   /**

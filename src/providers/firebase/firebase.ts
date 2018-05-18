@@ -15,9 +15,9 @@ export class FirebaseProvider {
     console.log('Hello FirebaseProvider Provider');
   }
 
-  getShoppingItems(query = {}) {
+  getItems(query = {}) {0
     //return this.afd.list('/sktapp/');
-    return this.afd.list('/sktapp/', {
+    return this.afd.list('/sktapp/items', {
       query: query
     });
      
@@ -25,11 +25,11 @@ export class FirebaseProvider {
   }
  
   addItem(name) {
-    this.afd.list('/sktapp/').push(name);
+    this.afd.list('/sktapp/items').push(name);
   }
  
   removeItem(id) {
-    this.afd.list('/sktapp/').remove(id);
+    this.afd.list('/sktapp/items').remove(id);
   }
 
 

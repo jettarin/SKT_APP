@@ -18,7 +18,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { FirebaseProvider } from './../providers/firebase/firebase';
 
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 
 const firebaseConfig = {
@@ -67,7 +67,8 @@ export function provideSettings(storage: Storage) {
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

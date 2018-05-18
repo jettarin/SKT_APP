@@ -15,13 +15,13 @@
 <ion-content>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let k of shoppingItems | async">
+    <ion-item-sliding *ngFor="let k of items | async">
       <button ion-item (click)="openItem(k)">
         <ion-avatar item-start>
           <img [src]="k.profilePic" />
         </ion-avatar>
         <h2>{{k.name}}</h2>
-        <p>{{k.url}}</p>
+        <p>{{k.about}}</p>
         <ion-note item-end *ngIf="k.note">{{k.note}}</ion-note>
       </button>
       

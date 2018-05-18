@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Items } from '../../providers';
+
+
+import { ImageViewerController } from "ionic-img-viewer";
 
 @IonicPage()
 @Component({
@@ -11,8 +13,15 @@ import { Items } from '../../providers';
 export class ItemDetailPage {
   item: any;
 
-  constructor(public navCtrl: NavController, navParams: NavParams, items: Items) {
-    this.item = navParams.get('item') || items.defaultItem;
+  constructor(public navCtrl: NavController, navParams: NavParams, public imageViewerCtrl: ImageViewerController) {
+    this.item = navParams.get('item');
+  }
+
+  onClick(imageToView) {
+    console.log(imageToView);
+    
+    const viewer = this.imageViewerCtrl.create(imageToView)
+    viewer.present();
   }
 
 }

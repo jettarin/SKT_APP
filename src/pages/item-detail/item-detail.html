@@ -8,7 +8,8 @@
 
 
 <ion-content>
-  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+  <div class="item-profile" text-center [style.background-image]="'url(' + item.profilePic + ')'"  >
+    <img src="{{item.profilePic}}" alt="" #imageToView  (click)="onClick(imageToView)">
   </div>
 
   <div class="item-detail" padding>
