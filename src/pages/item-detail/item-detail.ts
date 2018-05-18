@@ -19,6 +19,7 @@ export class ItemDetailPage {
 
   onClick(imageToView) {
     console.log(imageToView);
+
     
     const viewer = this.imageViewerCtrl.create(imageToView)
     viewer.present();

@@ -24,13 +24,11 @@
         <p>{{k.about}}</p>
         <ion-note item-end *ngIf="k.note">{{k.note}}</ion-note>
       </button>
-      
       <ion-item-options>
         <button ion-button color="danger" (click)="deleteItem(k)">
           {{ 'DELETE_BUTTON' | translate }}
         </button>
       </ion-item-options>
-      
     </ion-item-sliding>
   </ion-list>
 </ion-content>

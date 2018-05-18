@@ -15,14 +15,18 @@ export class FirebaseProvider {
     console.log('Hello FirebaseProvider Provider');
   }
 
-  getItems(query = {}) {0
+  getItems(query = {}) {
     //return this.afd.list('/sktapp/');
+    console.log(query)
     return this.afd.list('/sktapp/items', {
       query: query
     });
-     
 
+   
+    
   }
+
+
  
   addItem(name) {
     this.afd.list('/sktapp/items').push(name);
