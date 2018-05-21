@@ -29,7 +29,9 @@ export class SearchPage {
     this.currentItems = this.firebaseProvider.getItems(
       {
         orderByChild:'name',
-        
+        startAt:val,
+        endAt:val+"\uf8ff",
+        once:"value"
       }
     );
     console.log(this.currentItems);

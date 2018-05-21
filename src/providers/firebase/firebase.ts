@@ -21,10 +21,8 @@ export class FirebaseProvider {
     return this.afd.list('/sktapp/items', {
       query: query
     });
-
-   
-    
   }
+
 
 
  
